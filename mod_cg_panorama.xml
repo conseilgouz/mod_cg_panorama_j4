@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension	type="module" client="site" method="upgrade">
+	<name>CG Panorama</name>
+	<author>ConseilGouz</author>
+	<creationDate>October 2021</creationDate>
+	<copyright>Copyright (C) 2021 ConseilGouz. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
+	<authorUrl>www.conseilgouz.com</authorUrl>
+	<version>2.0.0</version>
+	<description>CGPANORAMADESC</description>
+	<namespace path="src">ConseilGouz\Module\CGPanorama</namespace>
+	<scriptfile>script.php</scriptfile>
+	<changelogurl>https://www.conseilgouz.com/updates/mod_cg_panorama_changelog.xml</changelogurl>
+	<files>
+		<filename module="mod_cg_panorama">mod_cg_panorama.php</filename>
+		<filename>mod_cg_panorama.xml</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+	<media destination="mod_cg_panorama" folder="media">
+		<folder>js</folder>
+		<folder>css</folder>
+		<filename>index.html</filename>
+	</media>
+	
+	<languages>
+		<language tag="fr-FR">language/fr-FR/mod_cg_panorama.ini</language>
+		<language tag="fr-FR">language/fr-FR/mod_cg_panorama.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="pano_file"
+					type="media"
+					directory="/images"
+					label="Fichier JPG à afficher"
+					description="Entrez le nom du fichier à afficher en mode panorama."
+					size="50"
+					hide_none="true"
+					hide_default="true"
+					/>
+				<field
+					name="pano_height"
+					type="text"
+					default="300"
+					label="Hauteur de l'image"
+					description="Entrez la hauteur de l'image à afficher en mode panorama en px."
+					>
+				</field>
+				<field
+					name="pano_360"
+					type="list"
+					default="1"
+					label="Image 360°"
+					description="Cliquez si vous avez une image 360°."
+					>
+					<option value="1">oui</option>
+					<option value="0">non</option>
+				</field>
+				<field
+					name="pano_anim"
+					type="list"
+					default="1"
+					label="Animation de l'image"
+					description="Choisissez le sens d'animation de l'image."
+					>
+					<option value="no">Aucune</option>
+					<option value="right">Vers la droite</option>
+					<option value="left">Vers la gauche</option>
+					
+				</field>
+				<field
+					name="pano_speed"
+					type="text"
+					default="50"
+					label="Vitesse défilement"
+					description="Entrez la vitesse défilement (défaut: 50)."
+					>
+				</field>
+			</fieldset>
+			<fieldset
+				name="advanced">
+				
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+			</fieldset>
+			
+		</fields>
+	</config>
+	<updateservers>
+	<server type="extension" name="Simple Panorama" priority="1">https://www.conseilgouz.com/updates/cg_panorama_update.xml</server>
+	</updateservers>
+	
+</extension>

@@ -1,0 +1,9 @@
+<changelogs>
+	<changelog>
+		<element>mod_cg_panorama</element>
+		<type>Module</type>
+        <addition>
+            <item>Joomla 4.0 compatibility</item>
+        </addition>
+	</changelog>
+</changelogs>
