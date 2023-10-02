@@ -12,6 +12,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
 use Joomla\Filesystem\File;
+use Joomla\CMS\Log\Log;
 
 class mod_cg_panoramaInstallerScript
 {
@@ -66,24 +67,22 @@ class mod_cg_panoramaInstallerScript
 		return true;
     }
 	private function postinstall_cleanup() {
-		$obsloteFolders = ['unitegallery', 'assets', 'models','elements'];
-		// Remove plugins' files which load outside of the component. If any is not fully updated your site won't crash.
+	// remove mod_simple_panorama files
+		$obsloteFolders = ['mod_simple_panorama'];
 		foreach ($obsloteFolders as $folder)
 		{
-			$f = JPATH_SITE . '/modules/mod_'.$this->extname.'/' . $folder;
-
-			if (!@file_exists($f) || !is_dir($f) || is_link($f))
-			{
+			$f = JPATH_SITE . '/modules/'.$folder;
+			if (!@file_exists($f) || !is_dir($f) || is_link($f)) {
 				continue;
 			}
-
 			Folder::delete($f);
 		}
-		$obsloteFiles = [sprintf("%s/modules/mod_%s/helper.php", JPATH_SITE, $this->extname)];
-		foreach ($obsloteFiles as $file)
-		{
-			if (@is_file($file))
-			{
+		$langFiles = [
+			sprintf("%s/language/fr-FR/fr-FR.mod_simple_panorama.ini", JPATH_SITE),
+			sprintf("%s/language/fr-FR/en-GB.mod_simple_panorama.sys.ini", JPATH_SITE),
+			];
+		foreach ($langFiles as $file) {
+			if (@is_file($file)) {
 				File::delete($file);
 			}
 		}
@@ -104,6 +103,39 @@ class mod_cg_panoramaInstallerScript
 				}
 			}
 		}
+		// update existing modules to cg_panorama
+		$db = Factory::getDbo();
+        $conditions = array($db->qn('module') . ' = ' . $db->q('mod_simple_panorama'));
+        $fields = array($db->qn('module') . ' = '. $db->q('mod_cg_panorama'));
+        $query = $db->getQuery(true);
+		$query->update($db->quoteName('#__modules'))->set($fields)->where($conditions);
+		$db->setQuery($query);
+        try {
+	        $db->execute();
+        }
+        catch (\RuntimeException $e) {
+            Log::add('unable to update mod_post_it to cg_panorama', Log::ERROR, 'jerror');
+        }
+		
+		// remove obsolete update sites
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%432473037d.url-de-test.ws/%"');
+		$db->setQuery($query);
+		$db->execute();
+		// CG Panorama is now on Github
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "conseilgouz.com/updates/simple_panorama%"');
+		$db->setQuery($query);
+		$db->execute();
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "conseilgouz.com/updates/cg_panorama%"');
+		$db->setQuery($query);
+		$db->execute();
+		
 	}
 
 	// Check if Joomla version passes minimum requirement

@@ -12,6 +12,9 @@
         <remove>
             <item>Remove Jquery dependency</item>
         </remove>
+		<change>
+			<item>Rename Simple Panorama to CG Panorama</item>
+		</change>
 	</changelog>
 	<changelog>
 		<element>mod_cg_panorama</element>
