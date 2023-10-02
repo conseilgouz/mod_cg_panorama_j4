@@ -111,7 +111,21 @@ class mod_cg_panoramaInstallerScript
         catch (\RuntimeException $e) {
             Log::add('unable to update mod_post_it to cg_panorama', Log::ERROR, 'jerror');
         }
-		
+		// delete mod_simple_panorama from extensions
+        $conditions = array(
+			$db->quoteName('type').'='.$db->quote('module'),
+			$db->quoteName('element').'='.$db->quote('mod_simple_panorama')
+        );
+        $query = $db->getQuery(true);
+		$query->delete($db->quoteName('#__extensions'))->where($conditions);
+		$db->setQuery($query);
+        try {
+	        $db->execute();
+        }
+        catch (\RuntimeException $e) {
+            Log::add('unable to delete mod_postit from extensions', Log::ERROR, 'jerror');
+        }
+
 		// remove obsolete update sites
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true)
