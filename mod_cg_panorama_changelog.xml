@@ -2,6 +2,17 @@
 	<changelog>
 		<element>mod_cg_panorama</element>
 		<type>Module</type>
+		<version>2.1.3</version>
+        <note>
+            <item>Update : 02/10/2023</item>
+        </note>
+		<fix>
+			<item>Drag image on small screens</item>
+		</fix>
+	</changelog>
+	<changelog>
+		<element>mod_cg_panorama</element>
+		<type>Module</type>
 		<version>2.1.2</version>
         <note>
             <item>Update : 02/10/2023</item>

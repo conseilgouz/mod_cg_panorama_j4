@@ -1,6 +1,6 @@
 /**
 * CG Panorama - Joomla Module 
-* Version			: 2.1.2
+* Version			: 2.1.3
 * Package			: Joomla 4.x - 5.x
 * copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
@@ -89,7 +89,7 @@ Pano.prototype.init = function() {
 		event.preventDefault();
 		myid = this.getAttribute("data");
 		$this = pano[myid];
-		clearInterval($this.intervalId);
+		$this.stopMoving($this);
 		$this.moveLeft($this);
 		if (!($this.anim == "no")) 	{
 			$this.anim = "left";
@@ -139,9 +139,13 @@ Pano.prototype.init = function() {
 		event.preventDefault();
 		myid = this.getAttribute("data");
 		$this = pano[myid];
-		$this.stopMoving($this);
-		$this.indicateMovement($this);
-		$this.animation($this);
+		if ($this.centerCtrl.textContent =='x') {
+			$this.stopMoving($this);
+			$this.noMovement($this);
+		} else {
+			$this.animation($this);
+			$this.indicateMovement($this);
+		}
 		$this.centerCtrl.textContent ="x"; 
 	});
 	this.mypano.addEventListener("mousedown", function(event){
