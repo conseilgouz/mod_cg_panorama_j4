@@ -69,8 +69,7 @@ class mod_cg_panoramaInstallerScript
 	private function postinstall_cleanup() {
 	// remove mod_simple_panorama files
 		$obsloteFolders = ['mod_simple_panorama'];
-		foreach ($obsloteFolders as $folder)
-		{
+		foreach ($obsloteFolders as $folder) {
 			$f = JPATH_SITE . '/modules/'.$folder;
 			if (!@file_exists($f) || !is_dir($f) || is_link($f)) {
 				continue;
@@ -86,23 +85,19 @@ class mod_cg_panoramaInstallerScript
 				File::delete($file);
 			}
 		}
-		$j = new Version();
-		$version=$j->getShortVersion(); 
-		$version_arr = explode('.',$version);
-		if (($version_arr[0] == "4") || (($version_arr[0] == "3") && ($version_arr[1] == "10"))) {
-			// Delete 3.9 and older language files
-			$langFiles = [
-				sprintf("%s/language/en-GB/en-GB.mod_%s.ini", JPATH_SITE, $this->extname),
-				sprintf("%s/language/en-GB/en-GB.mod_%s.sys.ini", JPATH_SITE, $this->extname),
-				sprintf("%s/language/fr-FR/fr-FR.mod_%s.ini", JPATH_SITE, $this->extname),
-				sprintf("%s/language/fr-FR/fr-FR.mod_%s.sys.ini", JPATH_SITE, $this->extname),
-			];
-			foreach ($langFiles as $file) {
-				if (@is_file($file)) {
-					File::delete($file);
-				}
+		// Delete 3.9 and older language files
+		$langFiles = [
+			sprintf("%s/language/en-GB/en-GB.mod_%s.ini", JPATH_SITE, $this->extname),
+			sprintf("%s/language/en-GB/en-GB.mod_%s.sys.ini", JPATH_SITE, $this->extname),
+			sprintf("%s/language/fr-FR/fr-FR.mod_%s.ini", JPATH_SITE, $this->extname),
+			sprintf("%s/language/fr-FR/fr-FR.mod_%s.sys.ini", JPATH_SITE, $this->extname),
+		];
+		foreach ($langFiles as $file) {
+			if (@is_file($file)) {
+				File::delete($file);
 			}
 		}
+
 		// update existing modules to cg_panorama
 		$db = Factory::getDbo();
         $conditions = array($db->qn('module') . ' = ' . $db->q('mod_simple_panorama'));
