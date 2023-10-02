@@ -127,12 +127,12 @@ class mod_cg_panoramaInstallerScript
 		// CG Panorama is now on Github
 		$query = $db->getQuery(true)
 			->delete('#__update_sites')
-			->where($db->quoteName('location') . ' like "conseilgouz.com/updates/simple_panorama%"');
+			->where($db->quoteName('location') . ' like "%conseilgouz.com/updates/simple_panorama%"');
 		$db->setQuery($query);
 		$db->execute();
 		$query = $db->getQuery(true)
 			->delete('#__update_sites')
-			->where($db->quoteName('location') . ' like "conseilgouz.com/updates/cg_panorama%"');
+			->where($db->quoteName('location') . ' like "%conseilgouz.com/updates/cg_panorama%"');
 		$db->setQuery($query);
 		$db->execute();
 		

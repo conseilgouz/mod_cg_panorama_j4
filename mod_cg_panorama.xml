@@ -2,7 +2,7 @@
 <extension	type="module" client="site" method="upgrade">
 	<name>CG Panorama</name>
 	<author>ConseilGouz</author>
-	<creationDate>2023-09-29</creationDate>
+	<creationDate>2023-10-02</creationDate>
 	<copyright>Copyright (C) 2023 ConseilGouz. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
@@ -98,7 +98,6 @@
 	</config>
 	<updateservers>
 	<server type="extension" name="Simple Panorama" priority="1">https://raw.githubusercontent.com/conseilgouz/updates_github/master/cg_panorama_update.xml</server>
-</server>
 	</updateservers>
 	
 </extension>
