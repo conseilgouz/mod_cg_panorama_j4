@@ -2,6 +2,24 @@
 	<changelog>
 		<element>mod_cg_panorama</element>
 		<type>Module</type>
+		<version>2.1.0</version>
+        <note>
+            <item>Update : 02/10/2023</item>
+        </note>
+		<fix>
+			<item>Joomla 5.x compatibility</item>
+		</fix>
+        <remove>
+            <item>Remove Jquery dependency</item>
+        </remove>
+	</changelog>
+	<changelog>
+		<element>mod_cg_panorama</element>
+		<type>Module</type>
+		<version>2.0.0</version>
+        <note>
+            <item>Update : 01/10/2021</item>
+        </note>
         <addition>
             <item>Joomla 4.0 compatibility</item>
         </addition>

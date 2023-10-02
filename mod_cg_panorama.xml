@@ -2,14 +2,14 @@
 <extension	type="module" client="site" method="upgrade">
 	<name>CG Panorama</name>
 	<author>ConseilGouz</author>
-	<creationDate>October 2021</creationDate>
-	<copyright>Copyright (C) 2021 ConseilGouz. All rights reserved.</copyright>
+	<creationDate>2023-09-29</creationDate>
+	<copyright>Copyright (C) 2023 ConseilGouz. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>2.0.0</version>
+	<version>2.1.0</version>
 	<description>CGPANORAMADESC</description>
-	<namespace path="src">ConseilGouz\Module\CGPanorama</namespace>
+	<namespace path="src">ConseilGouz\Module\Cgpanorama</namespace>
 	<scriptfile>script.php</scriptfile>
 	<changelogurl>https://www.conseilgouz.com/updates/mod_cg_panorama_changelog.xml</changelogurl>
 	<files>
@@ -17,6 +17,7 @@
 		<filename>mod_cg_panorama.xml</filename>
 		<filename>index.html</filename>
 		<folder>tmpl</folder>
+		<folder>src</folder>
 	</files>
 	<media destination="mod_cg_panorama" folder="media">
 		<folder>js</folder>
@@ -31,7 +32,8 @@
 	
 	<config>
 		<fields name="params">
-			<fieldset name="basic">
+			<fieldset name="basic" addfieldprefix="ConseilGouz\Module\Cgpanorama\Site\Field">
+				<field name="version" type="version"  margintop="-3em" extension="mod_cg_panorama"/>
 				<field
 					name="pano_file"
 					type="media"
@@ -75,9 +77,9 @@
 				<field
 					name="pano_speed"
 					type="text"
-					default="50"
+					default="2"
 					label="Vitesse défilement"
-					description="Entrez la vitesse défilement (défaut: 50)."
+					description="Entrez la vitesse défilement (défaut: 2)."
 					>
 				</field>
 			</fieldset>

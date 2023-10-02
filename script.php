@@ -1,28 +1,28 @@
 <?php
 /**
-* CG Panorama Module  - Joomla 4.0.0 Module 
-* Version			: 2.0.0
+* CG Panorama Module  - Joomla 4.x/5.x Module 
 * Package			: CG Panorama
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Filesystem\Folder;
+use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
-use Joomla\CMS\Filesystem\File;
+use Joomla\Filesystem\File;
 
 class mod_cg_panoramaInstallerScript
 {
 	private $min_joomla_version      = '4.0.0';
-	private $min_php_version         = '7.2';
+	private $min_php_version         = '8.0';
 	private $name                    = 'CG Panorama';
 	private $exttype                 = 'module';
 	private $extname                 = 'cg_panorama';
 	private $previous_version        = '';
 	private $dir           = null;
+	private $lang;
 	private $installerName = 'cg_panoraminstaller';
 	public function __construct()
 	{
@@ -141,7 +141,7 @@ class mod_cg_panoramaInstallerScript
 	}
 	private function uninstallInstaller()
 	{
-		if ( ! JFolder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
+		if ( ! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
 			return;
 		}
 		$this->delete([
