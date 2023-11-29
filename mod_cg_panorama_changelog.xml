@@ -2,6 +2,17 @@
 	<changelog>
 		<element>mod_cg_panorama</element>
 		<type>Module</type>
+		<version>2.1.4</version>
+        <note>
+            <item>Update : 29/11/2023</item>
+        </note>
+		<fix>
+			<item>J 5.0.1/4.4.1 compatibility</item>
+		</fix>
+	</changelog>
+	<changelog>
+		<element>mod_cg_panorama</element>
+		<type>Module</type>
 		<version>2.1.3</version>
         <note>
             <item>Update : 02/10/2023</item>
